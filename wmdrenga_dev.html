@@ -1,0 +1,146 @@
+<!doctype html>
+<notebook theme="air">
+  <title>WMD Renga dev</title>
+  <script id="1" type="text/markdown">
+    # WMD Renga dev
+  </script>
+  <script id="2" type="text/html" pinned="">
+    <style>
+      .responsive-container {
+        font-size: .6vw;
+        width: 80vw;
+        height: 45vw;
+        background-color: black;
+        color: floralwhite;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: 5.2vw repeat(7, 1fr);
+        grid-template-rows: 2vw repeat(7, 1fr);
+        gap: 0;
+        padding: 1vw;
+        overflow-x: auto;
+        overflow-y: hidden;
+      }
+
+      .grid-cell {
+        background-color: #122;
+        padding: 1vw;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        text-align: left;
+        border: 1px solid #333;
+        /* min-height: 60px; */
+        white-space: pre-line;
+      }
+
+      /* top row */
+      .grid-cell:first-child,
+      .grid-cell:nth-child(-n+8) {
+        border: none;
+        justify-content: center;
+      }
+
+      /* first column (cells 1, 9, 17, 25, 33, 41, 49, 57) */
+      .grid-cell:nth-child(8n+1) {
+        border: none;
+        justify-content: center;
+      }
+
+      /* second row (cells 9-16) */
+      .grid-cell:nth-child(n+9):nth-child(-n+16) {
+        border-top: none;
+      }
+
+      /* 2nd column (cells 2, 10, 18, 26, 34, 42, 50, 58) */
+      .grid-cell:nth-child(8n+2) {
+        border-left: none;
+      }
+
+      /* cells 10-13: remove left and right borders */
+      .grid-cell:nth-child(n+10):nth-child(-n+13) {
+        border-left: none;
+        border-right: none;
+      }
+
+      /* cells 15-16: remove left and right borders */
+      .grid-cell:nth-child(15),
+      .grid-cell:nth-child(16) {
+        border-left: none;
+        border-right: none;
+      }
+
+      .grid-cell:nth-child(n+57) {
+        border-bottom: none;
+      }
+
+      .grid-cell:nth-child(8n) {
+        border-right: none;
+      }
+    </style>
+
+    <div class="responsive-container" id="renga-grid">
+      ${(() => {
+        const allCells = [];
+
+        // Get the first row (headers) from rengaData
+        if (rengaData && rengaData.length > 0) {
+          const headers = Object.keys(rengaData[0]);
+
+          // Add header row
+          headers.forEach(header => {
+            allCells.push(htl.html`<div class="grid-cell">${header}</div>`);
+          });
+
+          // Add data rows
+          rengaData.forEach(row => {
+            headers.forEach(header => {
+              const content = row[header] || '';
+              // Replace <br> tags with actual line breaks for display
+              const formattedContent = content.replace(/<br>/g, '\n');
+              allCells.push(htl.html`<div class="grid-cell">${formattedContent}</div>`);
+            });
+          });
+        }
+
+        return allCells;
+      })()}
+    </div>
+  </script>
+  <script id="4" type="module" pinned="">
+    function parseTsvToJson(tsvString) {
+      const lines = tsvString.trim().split('\n');
+      const headers = lines[0].split('\t').map(h => h.trim());
+
+      const result = [];
+
+      for (let i = 1; i < lines.length; i++) {
+        const values = lines[i].split('\t').map(v => v.trim());
+        const row = {};
+
+        for (let j = 0; j < headers.length; j++) {
+          row[headers[j]] = values[j] || '';
+        }
+
+        result.push(row);
+      }
+
+      return result;
+    }
+
+    // Parse the TSV data
+    const rengaData = parseTsvToJson(tsvTable);
+    display(rengaData);
+  </script>
+  <script id="3" type="module" pinned="">
+    const tsvTable = `Poet	Andrew	Isa	John	Minh Khue	Pranavi	Sehee	TJ
+    Initial					time turned sour, left a<br>bad taste, my teeth rotted I<br>ate everything sweet
+    Pranavi	rain pours down, ticking clock<br>the unending noise, so loud<br>I hear nothing yet	a taste like no other,<br>I recall the smell of skin,<br>my stomach aches loud	all you left me, no<br>less than numberless sickly<br>stars, and their darkness	my granduer grew, vines<br>of gold, a hunger anew<br>froze my daughter cold	crystal ball told me, look up<br>life exists between<br>stars glistening in the river	the air was once tart.<br>outside of time was tender<br>with a wash of bells	the clock strikes 13<br>cameras pointed, leaves change<br>you are still the same
+    Sehee	love escapes the past<br>clouds yellow, behind the trees<br>the bed is ready	my ears turn to felt<br>throat dried by rain and fear<br>here, I am alone	over wave and swell, tones<br>now ring and bring time back to<br>you, myself, to us	laundry dried, under<br>soft rays of sun, clean<br>my hands wrung, dirt, leaves	leaves likes trees die and<br>fall, if they told me to go<br>I wouldn’t sing twice	it was the first time<br>we met. you my true twinkling<br>infantry of hello	giants called our names<br>our purpose was to answer<br>intentionally
+    TJ	their footsteps were here<br>they say they know what happened<br>I feel the air sing	cicadas fly south<br>my tongue is caught in honey<br>i cannot speak well	falter. leaves falter<br>thoughts falter. flowers falter<br>deliberately	run down the river,<br>away from the ring, speak<br>with your lies, dont look up	I’ll cover my ears<br>they’ll see me drag you out, the<br>phone rang it’s suckle	I have answered them.<br>taste on the tongue stayed stale<br>as I grabbed my own arm 	now walk walk walk walk<br>walking, running, flying, so<br>walk walk, run run, fly
+    Isa	the hair falls down, down<br>a strand on my tongue, my head<br>I brush my hair, teeth	the promise of you<br>which prompts god to call your name<br>do not forget this	still they call us, still.<br>great ones call us– not hearing<br>falling silences	but do I know, am<br>I taught? learn where the winds blow<br>dirt, sky, I float, fly	seeping in the sun,<br>lemon picking orchards, I’ll<br>come back for orchids	let’s all forget now<br>like those on the gallows. I’ll<br>chop everyone’s head off	There is a life out<br>side of yourself they said<br>and I just taste salt
+    Minh Khue	soon I fell asleep.<br>on that lonely cloud is me<br>where do I go now?	am I full of shit?<br>god’s disgrace, eyes without a face<br>leave no past behind	no longer touch or<br>taste, up where sweetness is nothing.<br>flat on my tongue. here	in the bitter sea,<br>time chases, not complacent<br>bleed, my teeth, citrus needs	glass crows, colors go clear<br>I can’t see straight down highway<br>50 ways to dream	with sharp vinegar<br>in my nose. I breathe pale<br>name desolate smell	and I hit the ground<br>to do life over again<br>so please, just, believe
+    Andrew	the trees look bitter<br>the sun a glowing echo<br>when one dies, others grow	my gums taste sour<br>time measured by folds of skin<br>air warm, without sin	the mud is sweet, still<br>time is soured, still. the great air<br>tricked us into fall	ring the phone, hear your<br>voice, yell, scream the bitterness<br>and watch, decompose	it’s fickle here too<br>I’ll bite, claw through muscle ache<br>for another while	soon later, murders<br>will lose their screams, words, their meanings.<br>time passes, a sour taste	believe time turns sour<br>bells wash as giants falter<br>6th sense deemed senseless`
+  </script>
+</notebook>

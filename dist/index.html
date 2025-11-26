@@ -1,0 +1,699 @@
+<!doctype html><html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">/* Copyright 2025 Observable, Inc. */
+
+:root {
+  --serif:
+    "Source Serif 4", "Iowan Old Style", "Apple Garamond", "Palatino Linotype", "Times New Roman",
+    "Droid Serif", Times, serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --sans-serif:
+    "Inter", -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue",
+    ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
+  --monospace: "Spline Sans Mono", Menlo, Consolas, monospace;
+  --monospace-font: 14px/1.5 var(--monospace);
+  --max-width: calc(1024px - 4 * 16px); /* max-w-5xl p-4 */
+}
+
+html {
+  font: 17px/1.5 var(--serif);
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--theme-background);
+  color: var(--theme-foreground);
+  margin: 16px 0;
+  padding: 16px 24px;
+}
+
+body {
+  margin: auto;
+  max-width: var(--max-width);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--theme-foreground-alt);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+  text-wrap: balance;
+}
+
+h2 + p,
+h3 + p,
+h4 + p,
+h2 + table,
+h3 + table,
+h4 + table {
+  margin-top: 0;
+}
+
+.observablehq:first-of-type h1 + h2 {
+  color: var(--theme-foreground);
+  font-size: 20px;
+  font-style: italic;
+  font-weight: normal;
+  margin-bottom: 1rem; /* see h2 ~ p */
+}
+
+a[href] {
+  color: var(--theme-foreground-focus);
+  text-decoration: none;
+}
+
+a[href]:hover,
+a[href]:focus {
+  text-decoration: underline;
+}
+
+pre,
+code,
+tt {
+  font-family: var(--monospace);
+  font-size: 82.35294117%; /* from 17px to 14px */
+}
+
+pre code,
+figcaption code {
+  font-size: inherit;
+}
+
+pre[data-language] {
+  position: relative;
+}
+
+pre[data-language]::before {
+  content: attr(data-language);
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 0;
+  display: block;
+  text-align: right;
+  margin-right: -4px;
+  pointer-events: none;
+  font-size: 12px;
+  line-height: 21px;
+  color: var(--theme-foreground-muted);
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+  font-size: 88.235294117%; /* from 17px to 15px */
+}
+
+h2[id] a[href],
+h3[id] a[href] {
+  color: inherit;
+}
+
+pre {
+  line-height: 1.5;
+}
+
+img {
+  max-width: 100%;
+}
+
+p,
+table,
+figure,
+figcaption,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.katex-display {
+  max-width: 640px;
+}
+
+blockquote,
+ol,
+ul {
+  max-width: 600px;
+}
+
+blockquote {
+  margin: 1rem 1.5rem;
+}
+
+ul,
+ol {
+  padding-left: 28px;
+}
+
+hr {
+  height: 1px;
+  margin: 1rem 0;
+  padding: 1rem 0;
+  border: none;
+  background: no-repeat center/100% 1px
+    linear-gradient(to right, var(--theme-foreground-faintest), var(--theme-foreground-faintest));
+}
+
+pre {
+  background-color: var(--theme-background-alt);
+  border-radius: 4px;
+  margin: 1rem -1rem;
+  min-height: 1.5em;
+  padding: 4px 1rem;
+  overflow-x: auto;
+  overscroll-behavior-x: none;
+  box-sizing: border-box;
+}
+
+pre > code:only-child {
+  display: block;
+  width: fit-content;
+}
+
+input:not([type]),
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="range"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="url"] {
+  width: 240px;
+}
+
+input,
+canvas,
+button {
+  vertical-align: middle;
+}
+
+button,
+input,
+textarea {
+  accent-color: var(--theme-foreground-focus);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font: 13px/1.2 var(--sans-serif);
+}
+
+table pre,
+table code,
+table tt {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+th > pre:only-child,
+td > pre:only-child {
+  margin: 0;
+  padding: 0;
+}
+
+th {
+  color: var(--theme-foreground);
+  text-align: left;
+  vertical-align: bottom;
+}
+
+td {
+  color: var(--theme-foreground-alt);
+  vertical-align: top;
+}
+
+th,
+td {
+  padding: 3px 6.5px 3px 0;
+}
+
+th:last-child,
+td:last-child {
+  padding-right: 0;
+}
+
+tr:not(:last-child) {
+  border-bottom: solid 1px var(--theme-foreground-faintest);
+}
+
+thead tr {
+  border-bottom: solid 1px var(--theme-foreground-fainter);
+}
+
+figure,
+table {
+  margin: 1rem 0;
+}
+
+figure img {
+  max-width: 100%;
+}
+
+figure > h2,
+figure > h3 {
+  font-family: var(--sans-serif);
+}
+
+figure > h2 {
+  font-size: 20px;
+}
+
+figure > h3 {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+figcaption {
+  font: small var(--sans-serif);
+  color: var(--theme-foreground-muted);
+}
+
+.observablehq--collapsed,
+.observablehq--expanded.observablehq--inspect a {
+  cursor: pointer;
+}
+
+.observablehq--caret {
+  margin-right: 4px;
+  vertical-align: baseline;
+}
+
+.observablehq--field {
+  text-indent: -1rem;
+  margin-left: 1rem;
+}
+
+.observablehq--inspect {
+  font: var(--monospace-font);
+  overflow-x: auto;
+  white-space: pre;
+  display: block;
+  padding: 2px 0;
+}
+
+.observablehq--inspect.observablehq--import {
+  white-space: normal;
+}
+
+.observablehq--inspect::-webkit-scrollbar {
+  display: none;
+}
+
+.observablehq--error .observablehq--inspect {
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+.observablehq--string-expand {
+  margin-left: 6px;
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-size: 80%;
+  background: var(--theme-background-alt);
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.observablehq--keyword {
+  color: var(--syntax-keyword);
+}
+
+.observablehq--index,
+.observablehq--key {
+  color: var(--syntax-definition);
+}
+
+.observablehq--symbol,
+.observablehq--regexp,
+.observablehq--string {
+  color: var(--syntax-string);
+}
+
+.observablehq--null {
+  color: var(--syntax-keyword);
+}
+
+.observablehq--undefined {
+  color: var(--syntax-variable);
+}
+
+.observablehq--prototype-key {
+  color: var(--syntax-comment);
+}
+
+.observablehq--bigint,
+.observablehq--boolean,
+.observablehq--date,
+.observablehq--forbidden,
+.observablehq--number {
+  color: var(--syntax-literal);
+}
+
+.observablehq--error {
+  color: var(--theme-error);
+}
+
+.observablehq--cell {
+  margin: 17px 0;
+  min-height: 1px; /* prevent margin collapse when empty */
+}
+
+.tok-link {
+  color: var(--syntax-link);
+}
+
+.tok-strong {
+  font-weight: 600;
+}
+
+.tok-emphasis {
+  font-style: italic;
+}
+
+.tok-keyword {
+  color: var(--syntax-keyword);
+}
+
+.tok-atom {
+  color: var(--syntax-atom);
+}
+
+.tok-literal {
+  color: var(--syntax-literal);
+}
+
+.tok-string {
+  color: var(--syntax-string);
+}
+
+.tok-comment {
+  color: var(--syntax-comment);
+}
+
+.tok-invalid {
+  color: var(--syntax-invalid);
+}
+
+.tok-variable {
+  color: var(--syntax-variable);
+}
+
+.tok-definition {
+  color: var(--syntax-definition);
+}
+
+.tok-meta {
+  color: var(--syntax-meta);
+}
+
+.plot-d6a7b5 {
+  --plot-background: var(--theme-background);
+}
+
+p .plot-d6a7b5 {
+  display: inline-block;
+}
+
+.observablehq--cell:empty {
+  min-height: 0;
+}
+
+.observablehq--cell:not(:empty) + pre {
+  margin-top: -11px;
+}
+
+* {
+        margin-top:0 !important;
+      }
+
+html {
+        background-color: pink;
+        margin:0;
+        padding:0;
+        border:0;
+      }
+
+body {
+        max-width: none;
+        margin:0;
+        padding:0;
+        border:0;
+      }
+    </style>
+  <meta name="generator" content="Observable Notebook Kit v1.5.0"><title>WMD Renga dev</title>  <script type="module" crossorigin src="./assets/index-DAQ9OA27.js"></script>
+</head>
+  <body>
+    <main><div id="cell-1" class="observablehq observablehq--cell"><div><h1>WMD Renga dev</h1>
+</div></div><div id="cell-2" class="observablehq observablehq--cell"><style>
+  .responsive-container {
+    font-size: .6vw;
+    width: 80vw;
+    height: 45vw;
+    background-color: black;
+    color: floralwhite;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 5.2vw repeat(7, 1fr);
+    grid-template-rows: 2vw repeat(7, 1fr);
+    gap: 0;
+    padding: 1vw;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .grid-cell {
+    background-color: #122;
+    padding: 1vw;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    text-align: left;
+    border: 1px solid #333;
+    /* min-height: 60px; */
+    white-space: pre-line;
+  }
+
+  /* top row */
+  .grid-cell:first-child,
+  .grid-cell:nth-child(-n+8) {
+    border: none;
+    justify-content: center;
+  }
+
+  /* first column (cells 1, 9, 17, 25, 33, 41, 49, 57) */
+  .grid-cell:nth-child(8n+1) {
+    border: none;
+    justify-content: center;
+  }
+
+  /* second row (cells 9-16) */
+  .grid-cell:nth-child(n+9):nth-child(-n+16) {
+    border-top: none;
+  }
+
+  /* 2nd column (cells 2, 10, 18, 26, 34, 42, 50, 58) */
+  .grid-cell:nth-child(8n+2) {
+    border-left: none;
+  }
+
+  /* cells 10-13: remove left and right borders */
+  .grid-cell:nth-child(n+10):nth-child(-n+13) {
+    border-left: none;
+    border-right: none;
+  }
+
+  /* cells 15-16: remove left and right borders */
+  .grid-cell:nth-child(15),
+  .grid-cell:nth-child(16) {
+    border-left: none;
+    border-right: none;
+  }
+
+  .grid-cell:nth-child(n+57) {
+    border-bottom: none;
+  }
+
+  .grid-cell:nth-child(8n) {
+    border-right: none;
+  }
+</style>
+
+<div class="responsive-container" id="renga-grid">
+  
+</div></div><pre data-language="html"><code class="language-html">&lt;<span class="tok-keyword">style</span>&gt;
+  .responsive-container {
+    font-size: .6vw;
+    width: 80vw;
+    height: 45vw;
+    background-color: black;
+    color: floralwhite;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 5.2vw repeat(7, 1fr);
+    grid-template-rows: 2vw repeat(7, 1fr);
+    gap: 0;
+    padding: 1vw;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .grid-cell {
+    background-color: #122;
+    padding: 1vw;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    text-align: left;
+    border: 1px solid #333;
+    /* min-height: 60px; */
+    white-space: pre-line;
+  }
+
+  /* top row */
+  .grid-cell:first-child,
+  .grid-cell:nth-child(-n+8) {
+    border: none;
+    justify-content: center;
+  }
+
+  /* first column (cells 1, 9, 17, 25, 33, 41, 49, 57) */
+  .grid-cell:nth-child(8n+1) {
+    border: none;
+    justify-content: center;
+  }
+
+  /* second row (cells 9-16) */
+  .grid-cell:nth-child(n+9):nth-child(-n+16) {
+    border-top: none;
+  }
+
+  /* 2nd column (cells 2, 10, 18, 26, 34, 42, 50, 58) */
+  .grid-cell:nth-child(8n+2) {
+    border-left: none;
+  }
+
+  /* cells 10-13: remove left and right borders */
+  .grid-cell:nth-child(n+10):nth-child(-n+13) {
+    border-left: none;
+    border-right: none;
+  }
+
+  /* cells 15-16: remove left and right borders */
+  .grid-cell:nth-child(15),
+  .grid-cell:nth-child(16) {
+    border-left: none;
+    border-right: none;
+  }
+
+  .grid-cell:nth-child(n+57) {
+    border-bottom: none;
+  }
+
+  .grid-cell:nth-child(8n) {
+    border-right: none;
+  }
+&lt;/<span class="tok-keyword">style</span>&gt;
+
+&lt;<span class="tok-keyword">div</span> <span class="tok-definition">class</span>=<span class="tok-string">"responsive-container"</span> <span class="tok-definition">id</span>=<span class="tok-string">"renga-grid"</span>&gt;
+  ${(() =&gt; {
+    const allCells = [];
+
+    // Get the first row (headers) from rengaData
+    if (rengaData &amp;&amp; rengaData.length &gt; 0) {
+      const headers = Object.keys(rengaData[0]);
+
+      // Add header row
+      headers.forEach(header =&gt; {
+        allCells.push(htl.html`&lt;<span class="tok-keyword">div</span> <span class="tok-definition">class</span>=<span class="tok-string">"grid-cell"</span>&gt;${header}&lt;/<span class="tok-keyword">div</span>&gt;`);
+      });
+
+      // Add data rows
+      rengaData.forEach(row =&gt; {
+        headers.forEach(header =&gt; {
+          const content = row[header] || '';
+          // Replace &lt;<span class="tok-keyword">br</span>&gt; tags with actual line breaks for display
+          const formattedContent = content.replace(/&lt;<span class="tok-keyword">br</span>&gt;/g, '\n');
+          allCells.push(htl.html`&lt;<span class="tok-keyword">div</span> <span class="tok-definition">class</span>=<span class="tok-string">"grid-cell"</span>&gt;${formattedContent}&lt;/<span class="tok-keyword">div</span>&gt;`);
+        });
+      });
+    }
+
+    return allCells;
+  })()}
+&lt;/<span class="tok-keyword">div</span>&gt;</code></pre><div id="cell-4" class="observablehq observablehq--cell"></div><pre data-language="js"><code class="language-js"><span class="tok-keyword">function</span> <span class="tok-definition">parseTsvToJson</span>(<span class="tok-definition">tsvString</span>) {
+  <span class="tok-keyword">const</span> <span class="tok-definition">lines</span> = <span class="tok-variable">tsvString</span>.<span class="tok-definition">trim</span>().<span class="tok-definition">split</span>(<span class="tok-string">'</span><span class="tok-literal">\n</span><span class="tok-string">'</span>);
+  <span class="tok-keyword">const</span> <span class="tok-definition">headers</span> = <span class="tok-variable">lines</span>[<span class="tok-literal">0</span>].<span class="tok-definition">split</span>(<span class="tok-string">'</span><span class="tok-literal">\t</span><span class="tok-string">'</span>).<span class="tok-definition">map</span>(<span class="tok-definition">h</span> =&gt; <span class="tok-variable">h</span>.<span class="tok-definition">trim</span>());
+
+  <span class="tok-keyword">const</span> <span class="tok-definition">result</span> = [];
+
+  <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">i</span> = <span class="tok-literal">1</span>; <span class="tok-variable">i</span> &lt; <span class="tok-variable">lines</span>.<span class="tok-definition">length</span>; <span class="tok-variable">i</span>++) {
+    <span class="tok-keyword">const</span> <span class="tok-definition">values</span> = <span class="tok-variable">lines</span>[<span class="tok-variable">i</span>].<span class="tok-definition">split</span>(<span class="tok-string">'</span><span class="tok-literal">\t</span><span class="tok-string">'</span>).<span class="tok-definition">map</span>(<span class="tok-definition">v</span> =&gt; <span class="tok-variable">v</span>.<span class="tok-definition">trim</span>());
+    <span class="tok-keyword">const</span> <span class="tok-definition">row</span> = {};
+
+    <span class="tok-keyword">for</span> (<span class="tok-keyword">let</span> <span class="tok-definition">j</span> = <span class="tok-literal">0</span>; <span class="tok-variable">j</span> &lt; <span class="tok-variable">headers</span>.<span class="tok-definition">length</span>; <span class="tok-variable">j</span>++) {
+      <span class="tok-variable">row</span>[<span class="tok-variable">headers</span>[<span class="tok-variable">j</span>]] = <span class="tok-variable">values</span>[<span class="tok-variable">j</span>] || <span class="tok-string">''</span>;
+    }
+
+    <span class="tok-variable">result</span>.<span class="tok-definition">push</span>(<span class="tok-variable">row</span>);
+  }
+
+  <span class="tok-keyword">return</span> <span class="tok-variable">result</span>;
+}
+
+<span class="tok-comment">// Parse the TSV data</span>
+<span class="tok-keyword">const</span> <span class="tok-definition">rengaData</span> = <span class="tok-variable">parseTsvToJson</span>(<span class="tok-variable">tsvTable</span>);
+<span class="tok-variable">display</span>(<span class="tok-variable">rengaData</span>);</code></pre><div id="cell-3" class="observablehq observablehq--cell"></div><pre data-language="js"><code class="language-js"><span class="tok-keyword">const</span> <span class="tok-definition">tsvTable</span> = <span class="tok-string">`Poet	Andrew	Isa	John	Minh Khue	Pranavi	Sehee	TJ</span>
+<span class="tok-string">Initial					time turned sour, left a&lt;br&gt;bad taste, my teeth rotted I&lt;br&gt;ate everything sweet</span>
+<span class="tok-string">Pranavi	rain pours down, ticking clock&lt;br&gt;the unending noise, so loud&lt;br&gt;I hear nothing yet	a taste like no other,&lt;br&gt;I recall the smell of skin,&lt;br&gt;my stomach aches loud	all you left me, no&lt;br&gt;less than numberless sickly&lt;br&gt;stars, and their darkness	my granduer grew, vines&lt;br&gt;of gold, a hunger anew&lt;br&gt;froze my daughter cold	crystal ball told me, look up&lt;br&gt;life exists between&lt;br&gt;stars glistening in the river	the air was once tart.&lt;br&gt;outside of time was tender&lt;br&gt;with a wash of bells	the clock strikes 13&lt;br&gt;cameras pointed, leaves change&lt;br&gt;you are still the same</span>
+<span class="tok-string">Sehee	love escapes the past&lt;br&gt;clouds yellow, behind the trees&lt;br&gt;the bed is ready	my ears turn to felt&lt;br&gt;throat dried by rain and fear&lt;br&gt;here, I am alone	over wave and swell, tones&lt;br&gt;now ring and bring time back to&lt;br&gt;you, myself, to us	laundry dried, under&lt;br&gt;soft rays of sun, clean&lt;br&gt;my hands wrung, dirt, leaves	leaves likes trees die and&lt;br&gt;fall, if they told me to go&lt;br&gt;I wouldn’t sing twice	it was the first time&lt;br&gt;we met. you my true twinkling&lt;br&gt;infantry of hello	giants called our names&lt;br&gt;our purpose was to answer&lt;br&gt;intentionally</span>
+<span class="tok-string">TJ	their footsteps were here&lt;br&gt;they say they know what happened&lt;br&gt;I feel the air sing	cicadas fly south&lt;br&gt;my tongue is caught in honey&lt;br&gt;i cannot speak well	falter. leaves falter&lt;br&gt;thoughts falter. flowers falter&lt;br&gt;deliberately	run down the river,&lt;br&gt;away from the ring, speak&lt;br&gt;with your lies, dont look up	I’ll cover my ears&lt;br&gt;they’ll see me drag you out, the&lt;br&gt;phone rang it’s suckle	I have answered them.&lt;br&gt;taste on the tongue stayed stale&lt;br&gt;as I grabbed my own arm 	now walk walk walk walk&lt;br&gt;walking, running, flying, so&lt;br&gt;walk walk, run run, fly</span>
+<span class="tok-string">Isa	the hair falls down, down&lt;br&gt;a strand on my tongue, my head&lt;br&gt;I brush my hair, teeth	the promise of you&lt;br&gt;which prompts god to call your name&lt;br&gt;do not forget this	still they call us, still.&lt;br&gt;great ones call us– not hearing&lt;br&gt;falling silences	but do I know, am&lt;br&gt;I taught? learn where the winds blow&lt;br&gt;dirt, sky, I float, fly	seeping in the sun,&lt;br&gt;lemon picking orchards, I’ll&lt;br&gt;come back for orchids	let’s all forget now&lt;br&gt;like those on the gallows. I’ll&lt;br&gt;chop everyone’s head off	There is a life out&lt;br&gt;side of yourself they said&lt;br&gt;and I just taste salt</span>
+<span class="tok-string">Minh Khue	soon I fell asleep.&lt;br&gt;on that lonely cloud is me&lt;br&gt;where do I go now?	am I full of shit?&lt;br&gt;god’s disgrace, eyes without a face&lt;br&gt;leave no past behind	no longer touch or&lt;br&gt;taste, up where sweetness is nothing.&lt;br&gt;flat on my tongue. here	in the bitter sea,&lt;br&gt;time chases, not complacent&lt;br&gt;bleed, my teeth, citrus needs	glass crows, colors go clear&lt;br&gt;I can’t see straight down highway&lt;br&gt;50 ways to dream	with sharp vinegar&lt;br&gt;in my nose. I breathe pale&lt;br&gt;name desolate smell	and I hit the ground&lt;br&gt;to do life over again&lt;br&gt;so please, just, believe</span>
+<span class="tok-string">Andrew	the trees look bitter&lt;br&gt;the sun a glowing echo&lt;br&gt;when one dies, others grow	my gums taste sour&lt;br&gt;time measured by folds of skin&lt;br&gt;air warm, without sin	the mud is sweet, still&lt;br&gt;time is soured, still. the great air&lt;br&gt;tricked us into fall	ring the phone, hear your&lt;br&gt;voice, yell, scream the bitterness&lt;br&gt;and watch, decompose	it’s fickle here too&lt;br&gt;I’ll bite, claw through muscle ache&lt;br&gt;for another while	soon later, murders&lt;br&gt;will lose their screams, words, their meanings.&lt;br&gt;time passes, a sour taste	believe time turns sour&lt;br&gt;bells wash as giants falter&lt;br&gt;6th sense deemed senseless`</span></code></pre></main>
+  
+
+<style type="text/css">:root {
+  --syntax-link: var(--theme-foreground-focus);
+  --syntax-keyword: #e36209;
+  --syntax-atom: #032f62;
+  --syntax-literal: #6f42c1;
+  --syntax-string: #22863a;
+  --syntax-comment: var(--theme-foreground-muted);
+  --syntax-invalid: var(--theme-error);
+  --syntax-definition: #005cc5;
+  --syntax-variable: var(--theme-foreground-alt);
+  --syntax-meta: #d73a49;
+}
+
+:root {
+  --theme-background-b: color-mix(in srgb, var(--theme-foreground) 4%, var(--theme-background-a));
+  --theme-background: var(--theme-background-a);
+  --theme-background-alt: var(--theme-background-b);
+  --theme-foreground-alt: color-mix(in srgb, var(--theme-foreground) 90%, var(--theme-background-a));
+  --theme-foreground-muted: color-mix(in srgb, var(--theme-foreground) 60%, var(--theme-background-a));
+  --theme-foreground-faint: color-mix(in srgb, var(--theme-foreground) 50%, var(--theme-background-a));
+  --theme-foreground-fainter: color-mix(in srgb, var(--theme-foreground) 30%, var(--theme-background-a));
+  --theme-foreground-faintest: color-mix(in srgb, var(--theme-foreground) 14%, var(--theme-background-a));
+  --theme-error: #e7040f;
+  color-scheme: light;
+}
+
+:root {
+  --theme-foreground: #1b1e23;
+  --theme-foreground-focus: #3b5fc0;
+  --theme-background-a: #ffffff;
+}
+</style></body></html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+      @import url("observable:styles/index.css");
+      * {
+        margin-top:0 !important;
+      }
+      html {
+        background-color: black;
+        margin:0;
+        padding:0;
+        border:0;
+      }
+      body {
+        max-width: none;
+        margin:0;
+        padding:0;
+        border:0;
+      }
+      .responsive-container {
+        font-size: .6vw;
+        width: 100vw;
+        height: 56.25vw;
+        background-color: black;
+        color: black;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: 5.2vw repeat(7, 1fr);
+        grid-template-rows: 2vw repeat(7, 1fr);
+        gap: 0;
+        padding: 1vw;
+        overflow-x: auto;
+        overflow-y: hidden;
+        cursor: default;
+      }
+
+      .grid-cell {
+        background-color: #122;
+        padding: 1vw;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        text-align: left;
+        border: 1px solid #333;
+        /* min-height: 60px; */
+        white-space: pre-line;
+        transition: color 2s ease-in-out;
+        -o-transition: color 2s ease-in-out;
+        -ms-transition: color 2s ease-in-out;
+        -moz-transition: color 2s ease-in-out;
+        -webkit-transition: color 2s ease-in-out;
+      }
+
+      .grid-cell:hover {
+        color: floralwhite;
+      }
+
+      /* top row */
+      .grid-cell:first-child,
+      .grid-cell:nth-child(-n+8) {
+        border: none;
+        justify-content: center;
+      }
+
+      /* first column (cells 1, 9, 17, 25, 33, 41, 49, 57) */
+      .grid-cell:nth-child(8n+1) {
+        border: none;
+        justify-content: center;
+      }
+
+      /* second row (cells 9-16) */
+      .grid-cell:nth-child(n+9):nth-child(-n+16) {
+        border-top: none;
+      }
+
+      /* 2nd column (cells 2, 10, 18, 26, 34, 42, 50, 58) */
+      .grid-cell:nth-child(8n+2) {
+        border-left: none;
+      }
+
+      /* cells 10-13: remove left and right borders */
+      .grid-cell:nth-child(n+10):nth-child(-n+13) {
+        border-left: none;
+        border-right: none;
+      }
+
+      /* cells 15-16: remove left and right borders */
+      .grid-cell:nth-child(15),
+      .grid-cell:nth-child(16) {
+        border-left: none;
+        border-right: none;
+      }
+
+      .grid-cell:nth-child(n+57) {
+        border-bottom: none;
+      }
+
+      .grid-cell:nth-child(8n) {
+        border-right: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main></main>
+  </body>
+</html>
