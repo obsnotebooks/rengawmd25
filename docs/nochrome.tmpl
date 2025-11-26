@@ -3,28 +3,31 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap">
     <style type="text/css">
       @import url("observable:styles/index.css");
       * {
         margin-top:0 !important;
       }
       html {
-        background-color: black;
+        background-color: #011;
         margin:0;
         padding:0;
         border:0;
       }
       body {
+        background-color: #011;
         max-width: none;
         margin:0;
         padding:0;
         border:0;
       }
       .responsive-container {
-        font-size: .6vw;
+        font-size: .7vw;
         width: 100vw;
         height: 56.25vw;
-        background-color: black;
+        background-color: #122;
         color: black;
         box-sizing: border-box;
         display: grid;
@@ -42,9 +45,12 @@
         padding: 1vw;
         overflow: hidden;
         display: flex;
-        align-items: center;
-        justify-content: left;
+        flex-direction: column;
+        align-items: left;
+        justify-content: center;
         text-align: left;
+        /* text-align-last: right; */
+        text-wrap: pretty;
         border: 1px solid #333;
         /* min-height: 60px; */
         white-space: pre-line;
@@ -63,13 +69,17 @@
       .grid-cell:first-child,
       .grid-cell:nth-child(-n+8) {
         border: none;
+        align-items: center;
         justify-content: center;
+        text-align: center;
       }
 
       /* first column (cells 1, 9, 17, 25, 33, 41, 49, 57) */
       .grid-cell:nth-child(8n+1) {
         border: none;
+        align-items: center;
         justify-content: center;
+        text-align: center;
       }
 
       /* second row (cells 9-16) */
