@@ -1,12 +1,12 @@
 <!doctype html>
 <notebook theme="air">
-  <title>WMD25 Renga 0.1</title>
-  <script id="0" type="text/html">
+  <title>RengaWMD’25</title>
+  <script id="1" type="text/html">
     <div class="responsive-container" id="renga-grid">
       ${gridHTML}
     </div>
   </script>
-  <script id="1" type="module" hidden="">
+  <script id="2" type="module" hidden="">
     const buildGridHTML = () => {
       const allCells = [];
       let cellIndex = 0;
@@ -65,7 +65,7 @@
               }
               lineDiv.innerHTML = line;
               tempDiv.appendChild(lineDiv);
-              
+
               // Store reference to check after render
               setTimeout(() => {
                 // Create a test span to measure single-line height
@@ -76,7 +76,7 @@
                 lineDiv.appendChild(testSpan);
                 const singleLineHeight = testSpan.offsetHeight;
                 lineDiv.removeChild(testSpan);
-                
+
                 // If lineDiv height is greater than single line, it wrapped
                 if (lineDiv.offsetHeight > singleLineHeight * 1.2) {
                   lineDiv.style.textAlignLast = 'right';
@@ -120,7 +120,7 @@
     }
     const gridHTML = buildGridHTML();
   </script>
-  <script id="2" type="module" hidden="">
+  <script id="3" type="module" hidden="">
     const showVerseTable = new Map([
       [1, [2,3,4,5,6,7,8]],
       [2, [14,18,26,34,42,50,58]],
@@ -181,7 +181,7 @@
       [64, [52, 45, 36, 32, 23, 14]]
     ]);
   </script>
-  <script id="3" type="module" hidden="">
+  <script id="4" type="module" hidden="">
     function parseTsvToJson(tsvString) {
       const lines = tsvString.trim().split('\n');
       const headers = lines[0].split('\t').map(h => h.trim());
@@ -205,7 +205,7 @@
     // Parse the TSV data
     const rengaData = parseTsvToJson(tsvTable);
   </script>
-  <script id="4" type="module" hidden="">
+  <script id="5" type="module" hidden="">
     const tsvTable = `POET	Andrew	Isa	John	Minh Khue	Pranavi	Sehee	TJ
     					<b>time turned sour, left a<br>bad taste, my teeth rotted I<br>ate everything sweet
     Pranavi	rain pours down, ticking clock<br>the unending noise, so loud<br>I hear nothing yet	a taste like no other,<br>I recall the smell of skin,<br>my stomach aches loud	all you left me, no<br>less than numberless sickly<br>stars, and their darkness	my granduer grew, vines<br>of gold, a hunger anew<br>froze my daughter cold	crystal ball told me, look up<br>life exists between<br>stars glistening in the river	<b>the air was once tart.<br>outside of time was tender<br>with a wash of bells	the clock strikes 13<br>cameras pointed, leaves change<br>you are still the same
@@ -215,7 +215,7 @@
     Minh Khue	soon I fell asleep.<br>on that lonely cloud is me<br>where do I go now?	am I full of shit?<br>god’s disgrace, eyes without a face<br>leave no past behind	<b>no longer touch or<br>taste, up where sweetness is nothing.<br>flat on my tongue. here	in the bitter sea,<br>time chases, not complacent<br>bleed, my teeth, citrus needs	glass crows, colors go clear<br>I can’t see straight down highway<br>50 ways to dream	with sharp vinegar<br>in my nose. I breathe pale<br>name desolate smell	and I hit the ground<br>to do life over again<br>so please, just, believe
     Andrew	the trees look bitter<br>the sun a glowing echo<br>when one dies, others grow	my gums taste sour<br>time measured by folds of skin<br>air warm, without sin	the mud is sweet, still<br>time is soured, still. the great air<br>tricked us into fall	ring the phone, hear your<br>voice, yell, scream the bitterness<br>and watch, decompose	<b>it’s fickle here too<br>I’ll bite, claw through muscle ache<br>for another while	soon later, murders<br>will lose their screams, words, their meanings.<br>time passes, a sour taste	believe time turns sour<br>bells wash as giants falter<br>6th sense deemed senseless`
   </script>
-  <script id="5" type="module" hidden="">
+  <script id="6" type="module" hidden="">
     let highlightedCells = [];
 
     function highlightVerses(key) {
